@@ -1,6 +1,7 @@
 package com.github.mybatisdq.test.connection;
 
-import com.github.mybatisdq.demo.student.constant.DBConstant;
+
+import com.github.mybatisdq.test.demo.student.constant.DBConstant;
 import com.github.mybatisdq.test.util.SqlSessionUtil;
 import org.junit.Test;
 

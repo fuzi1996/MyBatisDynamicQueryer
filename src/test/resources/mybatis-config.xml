@@ -17,6 +17,7 @@
         </environment>
     </environments>
     <mappers>
-        <mapper resource="com/github/mybatisdq/demo/student/mapper/studentMapper.xml"/>
+        <mapper resource="com/github/mybatisdq/test/demo/student/mapper/studentMapper.xml"/>
+        <mapper resource="com/github/mybatisdq/test/demo/student/mapper/includeScriptMapper.xml"/>
     </mappers>
 </configuration>

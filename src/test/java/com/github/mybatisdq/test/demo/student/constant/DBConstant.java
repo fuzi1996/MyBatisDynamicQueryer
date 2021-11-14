@@ -1,4 +1,4 @@
-package com.github.mybatisdq.demo.student.constant;
+package com.github.mybatisdq.test.demo.student.constant;
 
 public class DBConstant {
     /**

@@ -1,4 +1,4 @@
-package com.github.mybatisdq.demo.student.entity;
+package com.github.mybatisdq.test.demo.student.entity;
 
 public class Student {
     private Long id;

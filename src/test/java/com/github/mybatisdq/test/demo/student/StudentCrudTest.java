@@ -1,8 +1,8 @@
-package com.github.mybatisdq.test.student;
+package com.github.mybatisdq.test.demo.student;
 
 import org.apache.ibatis.session.SqlSession;
-import com.github.mybatisdq.demo.student.entity.Student;
-import com.github.mybatisdq.demo.student.mapper.StudentMapper;
+import com.github.mybatisdq.test.demo.student.entity.Student;
+import com.github.mybatisdq.test.demo.student.mapper.StudentMapper;
 import com.github.mybatisdq.test.util.SqlSessionUtil;
 import org.junit.Test;
 
@@ -61,6 +61,16 @@ public class StudentCrudTest {
         Long id = 1L;
         Student student = mapper.queryById(id);
         System.out.println(String.format("根据id:%s,查到的数据:%s",id,student.toString()));
+    }
 
+    @Test
+    public void testQueryAllUseInclude(){
+        StudentMapper studentMapper = getStudentMapper();
+        List<Student> students = studentMapper.queryAllUseIncludeTag();
+        System.out.println(String.format("数据库共有数据:%s条",students.size()));
+
+        Long id = 1L;
+        Student student = studentMapper.queryByIdUseIncludeTag(id);
+        System.out.println(String.format("根据id:%s,查到的数据:%s",id,student.toString()));
     }
 }
