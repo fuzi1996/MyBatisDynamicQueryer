@@ -31,5 +31,6 @@ jobs:
       - name: Publish package
         run: mvn clean deploy -Dmaven.test.skip=true
         env:
+          GITHUB_TOKEN: ${{ github.token }}
           MAVEN_USERNAME: ${{ secrets.MAVEN_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.MAVEN_PASSWORD }}
