@@ -70,7 +70,11 @@ public class SqlBuilderStatement {
                 cacheKey,
                 sqlSource,
                 SqlCommandType.SELECT)).resultMaps(resultMapList).build();
-        this.configuration.addMappedStatement(mappedStatement);
+        try {
+            this.configuration.addMappedStatement(mappedStatement);
+        }catch (IllegalArgumentException illegalArgumentException){
+            // multi thread cause this exception,ignore
+        }
         return mappedStatement;
     }
 
