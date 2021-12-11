@@ -1,10 +1,7 @@
 package com.github.mybatisdq;
 
-import org.apache.ibatis.logging.Log;
-import org.apache.ibatis.logging.LogFactory;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.transaction.managed.ManagedTransaction;
 
 import java.util.List;
 

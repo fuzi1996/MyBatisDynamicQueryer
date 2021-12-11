@@ -1,5 +1,6 @@
 package com.github.mybatisdq;
 
+import com.github.mybatisdq.util.SqlStringUtil;
 import org.apache.ibatis.builder.MapperBuilderAssistant;
 import org.apache.ibatis.builder.xml.XMLIncludeTransformer;
 import org.apache.ibatis.logging.Log;
@@ -18,9 +19,6 @@ import java.util.List;
 
 public class SqlBuilderStatement {
     private static final Log log = LogFactory.getLog(SqlBuilderStatement.class);
-
-    private static final String SCRIPT_PREFIX = "<script>";
-    private static final String SCRIPT_SUFFIX = "</script>";
 
     private Configuration configuration;
     private LanguageDriver languageDriver;
@@ -87,7 +85,7 @@ public class SqlBuilderStatement {
      */
     public String getCacheKeyWithStore(String sql, Class<?> parameterType,
                                         Class<?> resultType) {
-        sql = this.appendScriptTag(sql);
+        sql = SqlStringUtil.appendScriptTag(sql);
         String cacheKey = this
                 .getCacheKey(sql, parameterType, resultType, SqlCommandType.SELECT);
         if (!this.hasMappedStatement(cacheKey)) {
@@ -96,7 +94,7 @@ public class SqlBuilderStatement {
             }
             MapperBuilderAssistant builderAssistant = new MapperBuilderAssistant(configuration,"");
             XPathParser xPathParser = new XPathParser(sql);
-            XNode context = xPathParser.evalNode("//script");
+            XNode context = xPathParser.evalNode("/script");
             XMLIncludeTransformer includeParser = new XMLIncludeTransformer(configuration, builderAssistant);
             includeParser.applyIncludes(context.getNode());
             SqlSource sqlSource = this.languageDriver
@@ -110,16 +108,6 @@ public class SqlBuilderStatement {
         return cacheKey;
     }
 
-    private String appendScriptTag(String sql){
-        StringBuffer sqlBuff = new StringBuffer();
-        if(!sql.startsWith(SCRIPT_PREFIX)){
-            sqlBuff.append(SCRIPT_PREFIX);
-        }
-        sqlBuff.append(sql);
-        if(!sql.endsWith(SCRIPT_SUFFIX)){
-            sqlBuff.append(SCRIPT_SUFFIX);
-        }
-        return sqlBuff.toString();
-    }
+
 
 }

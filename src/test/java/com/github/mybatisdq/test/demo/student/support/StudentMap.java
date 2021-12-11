@@ -10,9 +10,9 @@ public class StudentMap {
     public static final String GRADE = "grade";
     public static final String SCORE = "score";
 
-    private Map map;
+    private Map<String,Object> map;
 
-    public StudentMap(Map map){
+    public StudentMap(Map<String,Object> map){
         this.map = map;
     }
     
@@ -54,5 +54,9 @@ public class StudentMap {
 
     public void setScore(Integer score){
         this.map.put(SCORE,score);
+    }
+
+    public Map<String,Object> getRealMap(){
+        return this.map;
     }
 }
